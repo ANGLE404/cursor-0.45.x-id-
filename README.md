@@ -205,8 +205,76 @@ graph TD
 
 ## 📝 项目背景 | Background
 本项目提供Windows系统下Cursor IDE 0.45.x系列（0.45.8已验证）的设备标识重置解决方案。该项目采用PyQt6构建GUI界面，通过修改注册表机制和配置文件实现设备指纹重置。
+![a7000b7a3f27b29322482ae19496d2c7](https://github.com/user-attachments/assets/0fc581b5-088d-493d-91bf-12268e2eb87a)
 
 This project provides a device identity reset solution for Cursor IDE 0.45.x series (verified on 0.45.8) on Windows systems. Built with PyQt6 GUI framework, it modifies both registry entries and configuration files to reset device fingerprints.
-
 ---
 
+
+
+![PixPin_2025-02-04_03-07-01](https://github.com/user-attachments/assets/09d41b66-77d5-40bb-b4d3-23c66545d5ab)
+![PixPin_2025-02-04_03-07-52](https://github.com/user-attachments/assets/64b5750f-809f-4df3-90bc-bc0d58216b14)
+![PixPin_2025-02-04_03-08-26](https://github.com/user-attachments/assets/1df2f28d-a985-4742-b2ed-ef228a48a83f)
+
+
+
+https://cloud.siliconflow.cn/i/CoW8MS0u
+
+# SiliconCloud 裂变活动火热开启！2000万Tokens等你来领！
+
+大家好！今天我们为大家带来一个超值的活动——**SiliconCloud 裂变活动**，2000万Tokens等你来领！
+
+## 活动详情
+
+**北京时间2024年8月1日起**，每成功邀请一位新用户注册SiliconCloud，您和好友均可获得**2000万Tokens**（价值14元平台配额）。邀请越多，奖励越多，快来体验SiliconCloud的强大功能！
+
+### 活动规则
+1. **邀请好友赚Tokens**：每成功邀请一位新用户，您将获得2000万Tokens。
+2. **注册即送Tokens**：受邀好友完成注册后，立即获得2000万Tokens。
+3. **14元配额**：新用户还可获得14元平台配额，体验流畅的DeepSeek API，告别卡顿网络版本！
+
+## SiliconCloud API亮点
+
+SiliconCloud这次上线的DeepSeek-R1&V3模型，凭借以下特点成为开发者和用户的首选：
+
+1. **基于华为云昇腾云服务**
+   首发推出DeepSeek x硅基流动x华为云的R1&V3模型推理服务。
+
+2. **全球顶尖效果**
+   通过自研推理加速引擎，部署在华为云昇腾云服务的DeepSeek模型，效果持平全球高端GPU部署。
+
+3. **稳定的生产级服务**
+   满足大规模生产环境需求，华为云昇腾云服务提供澎湃、弹性、充足的算力。
+
+4. **零部署门槛**
+   开发者可直接调用SiliconCloud API，轻松专注于应用开发，带来更易用的体验。
+
+5. **优惠期价格**
+   DeepSeek-V3的价格为￥1/M tokens（输入）& ￥2/M tokens（输出），DeepSeek-R1的价格为￥4/M tokens（输入）& ￥16/M tokens（输出）。
+
+## API应用场景
+
+SiliconCloud API可直接接入多款客户端应用，包括：
+
+- **大模型客户端应用**：ChatBox、Cherry Studio、OneAPI、LobeChat、NextChat
+- **代码生成应用**：Cursor、Vindsurf、CIine
+- **大模型应用开发平台**：Dify
+- **AI知识库**：Obsidian AI、FastGPT
+- **翻译插件**：沉浸式翻译、欧路词典
+
+更多场景与应用案例接入教程可参考：
+[https://docs.siliconflow.cn/usercases/awesome-user-cases](https://docs.siliconflow.cn/usercases/awesome-user-cases)
+
+## 立即注册
+
+**点击下方链接，注册SiliconCloud**
+
+或复制链接到浏览器注册：[https://cloud.siliconflow.cn/i/CoW8MS0u](https://cloud.siliconflow.cn/i/CoW8MS0u)
+
+**快来参与裂变活动，邀请好友一起体验SiliconCloud的强大功能吧！**
+
+
+## 帮帮孩子注册
+## 我的助力额度完成一定数量了
+## 我会上传没有广告的版本
+## 感谢各位
