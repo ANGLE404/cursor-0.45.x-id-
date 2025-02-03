@@ -2,10 +2,9 @@
 ## ⚠️ 免责声明 | Disclaimer 
 **本项目仅用于学术研究目的**，旨在研究现代IDE软件的设备标识机制。我们强烈建议通过官方渠道获取Cursor的正版授权。
 ## 🛠️ 下载链接
+
 https://ajq.lanzouv.com/iOtwR2mn3yfa
 密码:aqqq
-[https://ajq.lanzouv.com/iOtwR2mn3yfa](https://ajq.lanzouv.com/iOtwR2mn3yfa
-密码:aqqq)
 
 
 **重要提醒**：使用者需自行承担以下风险：
