@@ -47,13 +47,6 @@ class IDGenerator:
 - Python 3.8+
 - 管理员权限运行
 
-### 一键部署
-```powershell
-# 以管理员身份运行
-Set-ExecutionPolicy RemoteSigned -Force
-iwr -Uri "https://raw.githubusercontent.com/yourrepo/main/install.ps1" -UseBasicParsing | iex
-```
-
 ### 图形界面操作流程
 1. 关闭Cursor IDE进程
 2. 执行`main.py`启动重置工具
@@ -83,7 +76,7 @@ graph TD
 ---
 
 ## 📄 许可协议 | License
-本项目采用GPLv3协议发布，商业使用需经作者书面授权。核心代码已进行字节码混淆处理，请注意保留原始版权声明。
+本项目采用GPLv3协议发布，商业使用需经作者书面授权。
 
 ```text
 © 2024 ayc404. All rights reserved.
@@ -183,18 +176,6 @@ graph TD
 
 ---
 
-**总结：**
-
-- **标题突出**：使用清晰的标题，方便用户快速了解内容。
-- **段落分明**： 使用粗体强调关键信息，避免阅读疲劳。
-- **列表清晰**： 使用列表方式组织信息，使内容更具条理性。
-- **风险提示**： 免责声明和注意事项放在突出位置，提醒用户谨慎使用。
-- **感谢声明**： 感谢相关开源项目，体现开源精神。
-- **内容完整**： 包含了项目简介、使用方法、注意事项、执行结果、系统要求和作者信息等必要内容。
-
-
-
-
 
 
 # Cursor Identity Reset Utility (光标设备标识重置工具)
@@ -261,9 +242,6 @@ SiliconCloud API可直接接入多款客户端应用，包括：
 - **大模型应用开发平台**：Dify
 - **AI知识库**：Obsidian AI、FastGPT
 - **翻译插件**：沉浸式翻译、欧路词典
-
-更多场景与应用案例接入教程可参考：
-[https://docs.siliconflow.cn/usercases/awesome-user-cases](https://docs.siliconflow.cn/usercases/awesome-user-cases)
 
 ## 立即注册
 
