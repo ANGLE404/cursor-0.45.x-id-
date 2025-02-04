@@ -1,6 +1,9 @@
 ## Cursor ID 0.45.x 重置工具开源声明
 ## ⚠️ 免责声明 | Disclaimer 
 **本项目仅用于学术研究目的**，旨在研究现代IDE软件的设备标识机制。我们强烈建议通过官方渠道获取Cursor的正版授权。
+## 📝 项目背景 | Background
+本项目提供Windows系统下Cursor IDE 0.45.x系列（0.45.8已验证）的设备标识重置解决方案。该项目采用PyQt6构建GUI界面，通过修改注册表机制和配置文件实现设备指纹重置。
+![a7000b7a3f27b29322482ae19496d2c7](https://github.com/user-attachments/assets/0fc581b5-088d-493d-91bf-12268e2eb87a)
 ## 🛠️ 下载链接
 最新版也可以重置
 https://ajq.lanzouv.com/iOtwR2mn3yfa
