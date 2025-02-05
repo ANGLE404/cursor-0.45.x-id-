@@ -33,9 +33,9 @@
 
 最新版也可以重置
 
-[下载链接](https://ajq.lanzouv.com/iOtwR2mn3yfa)
-
-密码: `aqqq`
+[下载链接]
+https://ajq.lanzouv.com/iCERC2mu0gfg
+密码: `4cbc`
 
 ### 无广告代码已经更新
 
