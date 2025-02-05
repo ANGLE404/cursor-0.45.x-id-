@@ -1,4 +1,6 @@
-## Cursor ID 0.45.x 重置工具开源声明
+##### 无广告代码已经更新
+
+## Cursor ID 0.45.x 重置工具开源声明 
 ## ⚠️ 免责声明 | Disclaimer 
 **本项目仅用于学术研究目的**，旨在研究现代IDE软件的设备标识机制。我们强烈建议通过官方渠道获取Cursor的正版授权。
 ## 📝 项目背景 | Background
@@ -8,9 +10,7 @@
 最新版也可以重置
 https://ajq.lanzouv.com/iOtwR2mn3yfa
 密码:aqqq
-### 帮我验证的朋友们给我邮箱发信息附上截图
-### anjiaqi404@qq.com
-### 我来给大家发送无广告的最新版本的
+### 无广告代码已经更新
 ![PixPin_2025-02-05_13-56-26](https://github.com/user-attachments/assets/17745383-c21d-4bbd-9755-8d9bdae0104a)
 
 
