@@ -237,15 +237,6 @@ graph TD
 
 This project provides a device identity reset solution for Cursor IDE 0.45.x series (verified on 0.45.8) on Windows systems. Built with PyQt6 GUI framework, it modifies both registry entries and configuration files to reset device fingerprints.
 
----
-
-![界面截图 1](https://github.com/user-attachments/assets/09d41b66-77d5-40bb-b4d3-23c66545d5ab)
-
-![界面截图 2](https://github.com/user-attachments/assets/64b5750f-809f-4df3-90bc-bc0d58216b14)
-
-![界面截图 3](https://github.com/user-attachments/assets/1df2f28d-a985-4742-b2ed-ef228a48a83f)
-
----
 
 # SiliconCloud 裂变活动火热开启！2000 万 Tokens 等你来领！
 
@@ -261,35 +252,6 @@ This project provides a device identity reset solution for Cursor IDE 0.45.x ser
 2.  **注册即送 Tokens**：受邀好友完成注册后，立即获得 2000 万 Tokens。
 3.  **14 元配额**：新用户还可获得 14 元平台配额，体验流畅的 DeepSeek API，告别卡顿网络版本！
 
-## SiliconCloud API 亮点
-
-SiliconCloud 这次上线的 DeepSeek-R1&V3 模型，凭借以下特点成为开发者和用户的首选：
-
-1.  **基于华为云昇腾云服务**
-    首发推出 DeepSeek x 硅基流动 x 华为云的 R1&V3 模型推理服务。
-
-2.  **全球顶尖效果**
-    通过自研推理加速引擎，部署在华为云昇腾云服务的 DeepSeek 模型，效果持平全球高端 GPU 部署。
-
-3.  **稳定的生产级服务**
-    满足大规模生产环境需求，华为云昇腾云服务提供澎湃、弹性、充足的算力。
-
-4.  **零部署门槛**
-    开发者可直接调用 SiliconCloud API，轻松专注于应用开发，带来更易用的体验。
-
-5.  **优惠期价格**
-    DeepSeek-V3 的价格为￥1/M tokens（输入）& ￥2/M tokens（输出），DeepSeek-R1 的价格为￥4/M tokens（输入）& ￥16/M tokens（输出）。
-
-## API 应用场景
-
-SiliconCloud API 可直接接入多款客户端应用，包括：
-
--   **大模型客户端应用**：ChatBox、Cherry Studio、OneAPI、LobeChat、NextChat
--   **代码生成应用**：Cursor、Vindsurf、CIine
--   **大模型应用开发平台**：Dify
--   **AI 知识库**：Obsidian AI、FastGPT
--   **翻译插件**：沉浸式翻译、欧路词典
-
 ## 立即注册
 
 **点击下方链接，注册 SiliconCloud**
@@ -298,3 +260,5 @@ SiliconCloud API 可直接接入多款客户端应用，包括：
 
 **快来参与裂变活动，邀请好友一起体验 SiliconCloud 的强大功能吧！**
 
+# 帮我助力一下谢谢各位
+# Help me, thank you everyone
