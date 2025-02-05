@@ -1,6 +1,4 @@
-好的，这是经过排版和优化的 README 文件：
 
-```markdown
 # Cursor ID 0.45.x 重置工具开源声明
 
 ## ⚠️ 免责声明 | Disclaimer
