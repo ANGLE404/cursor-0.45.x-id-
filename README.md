@@ -128,11 +128,6 @@ graph TD
 
 本工具旨在解决 Cursor IDE 的设备 ID 重置问题，支持 Cursor 0.45.x 版本（已在 0.45.8 版本上测试通过）。
 
-⚠️  **注意**：
-
--   本项目仅提供 Windows 系统下的代码，暂无 macOS 版本。
--   macOS 版本的思路和部分代码参考了 [hamflx/cursor-reset](https://github.com/hamflx/cursor-reset) 项目，在此表示感谢。
-
 ### ⚠️  免责声明
 
 -   本项目仅供学习和研究，旨在研究 Cursor IDE 的设备识别机制。
@@ -184,14 +179,6 @@ graph TD
 -   原始的 `IOPlatformUUID` 会被备份到 `~/CursorReset_Backups` 目录下。
 -    这个方法不会永久修改系统设置，但需要保持 PATH 环境变量的修改才能持续生效。
 
-### 执行结果
-
--   备份文件的位置
--   新生成的 `MachineGuid` （Windows）
--   新的 `telemetry.machineId`
--   新的 `telemetry.macMachineId`
--   新的 `telemetry.devDeviceId`
--   新的 `telemetry.sqmId`
 
 ### 系统要求
 
@@ -200,14 +187,6 @@ graph TD
 -   Windows 操作系统
 -   管理员权限
 -   Cursor IDE 0.45.x 版本（已在 0.45.8 版本测试通过）
-
-#### 2. macOS 系统
-
--   本项目暂无 macOS 系统支持，请参考 `hamflx/cursor-reset` 项目。
--   需 macOS 10.13 或更高版本
--   Python 3
--   sudo 权限
--   Cursor IDE 0.45.x 版本
 
 ### 开源许可
 
@@ -220,7 +199,6 @@ graph TD
 ### 作者
 
 -   ayc404
-
 ---
 
 # Cursor Identity Reset Utility (光标设备标识重置工具)
