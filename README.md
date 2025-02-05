@@ -8,6 +8,9 @@
 最新版也可以重置
 https://ajq.lanzouv.com/iOtwR2mn3yfa
 密码:aqqq
+### 帮我验证的朋友们给我邮箱发信息附上截图
+### 我来给大家发送无广告的最新版本的
+![PixPin_2025-02-05_13-56-26](https://github.com/user-attachments/assets/17745383-c21d-4bbd-9755-8d9bdae0104a)
 
 
 **重要提醒**：使用者需自行承担以下风险：
