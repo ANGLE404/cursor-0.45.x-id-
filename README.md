@@ -1,3 +1,32 @@
+# 更新了自动注册
+![7b5f0b31f447ee3189061044065276d7](https://github.com/user-attachments/assets/70ad7478-01da-4136-897c-d5db0aa53c0e)
+可以点击注册cursor进行自动注册
+但是一定记得要填写验证码
+![e53e1834074bef7cf8b4c486641ff437](https://github.com/user-attachments/assets/004c7bf9-8272-4122-a29a-fb66e2e19e9d)
+
+
+## 🙏 特别鸣谢 | Special Thanks
+
+本项目的开发过程中得到了众多开源项目和社区成员的支持与帮助,在此特别感谢:
+
+### 开源项目
+
+- [hamflx/cursor-reset](https://github.com/hamflx/cursor-reset) - 提供了初始的技术思路和实现方案
+- [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) - 优秀的GUI框架支持
+- [psutil](https://github.com/giampaolo/psutil) - 提供了可靠的进程管理功能
+- [cursor-free-vip](https://github.com/yeongpin/cursor-free-vip/tree/main)- 提供自动注册
+
+### 技术支持
+
+感谢以下项目和文档对本项目的技术支持:
+
+- Windows Registry Documentation - 提供了注册表操作的技术规范
+- UUID RFC 4122 - 为设备ID生成提供了标准规范
+- Python Software Foundation - 提供了强大的Python运行时支持
+
+### 社区贡献
+
+感谢所有为本项目提供反馈、建议和代码贡献的社区成员。您的支持是本项目不断改进的动力。
 
 # Cursor ID 0.45.x 重置工具开源声明
 
