@@ -1504,19 +1504,58 @@ class MainWindow(QMainWindow):
     def register_cursor(self):
         """注册Cursor"""
         try:
-            import cursor_register
-            success = cursor_register.main(translator)  # 获取返回值
+            import subprocess
+            import sys
+            import os
+            import traceback
+            import win32con
             
-            if success:
-                self.log_message("注册程序执行成功")
-                QMessageBox.information(self, "成功", "Cursor注册成功！")
+            # 获取cursor_register.py的路径
+            if getattr(sys, 'frozen', False):
+                base_path = sys._MEIPASS
+                python_exe = sys.executable
             else:
-                self.log_message("注册程序执行失败")
-                QMessageBox.warning(self, "警告", "Cursor注册失败，请查看日志了解详情。")
+                base_path = os.path.dirname(os.path.abspath(__file__))
+                python_exe = sys.executable
+            
+            register_script = os.path.join(base_path, 'cursor_register.py')
+            
+            # 确保文件存在
+            if not os.path.exists(register_script):
+                raise FileNotFoundError(f"找不到注册脚本: {register_script}")
+            
+            # 设置环境变量
+            env = os.environ.copy()
+            env['PYTHONPATH'] = base_path + os.pathsep + env.get('PYTHONPATH', '')
+            env['PYTHONIOENCODING'] = 'utf-8'
+            
+            # 使用cmd.exe来启动Python脚本，这样可以保持窗口打开
+            cmd_command = f'start cmd.exe /K "{python_exe} "{register_script}""'
+            
+            # 打印调试信息
+            self.log_message(f"执行命令: {cmd_command}")
+            self.log_message(f"工作目录: {base_path}")
+            
+            # 使用shell=True来执行cmd命令
+            process = subprocess.Popen(
+                cmd_command,
+                shell=True,
+                cwd=base_path,
+                env=env
+            )
+            
+            # 等待一段时间让窗口显示出来
+            import time
+            time.sleep(1)
+            
+            # 不等待进程完成，因为cmd窗口会保持打开
+            self.log_message("注册程序已启动")
             
         except Exception as e:
-            self.log_message(f"注册程序执行失败: {e}")
-            QMessageBox.critical(self, "错误", f"注册程序执行失败: {str(e)}")
+            error_msg = f"启动注册程序失败: {str(e)}\n\n"
+            error_msg += f"错误详情:\n{traceback.format_exc()}"
+            self.log_message(error_msg)
+            QMessageBox.critical(self, "错误", error_msg)
 
 if __name__ == "__main__":
     if sys.platform.startswith('win'):

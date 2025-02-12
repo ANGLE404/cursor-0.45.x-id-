@@ -1504,19 +1504,30 @@ class MainWindow(QMainWindow):
     def register_cursor(self):
         """注册Cursor"""
         try:
-            import cursor_register
-            success = cursor_register.main(translator)  # 获取返回值
+            # 使用subprocess启动注册程序
+            import subprocess
+            import sys
+            import os
             
-            if success:
-                self.log_message("注册程序执行成功")
-                QMessageBox.information(self, "成功", "Cursor注册成功！")
+            # 获取cursor_register.py的路径
+            if getattr(sys, 'frozen', False):
+                # 如果是打包后的exe
+                base_path = sys._MEIPASS
             else:
-                self.log_message("注册程序执行失败")
-                QMessageBox.warning(self, "警告", "Cursor注册失败，请查看日志了解详情。")
+                # 如果是直接运行的py文件
+                base_path = os.path.dirname(os.path.abspath(__file__))
+            
+            register_script = os.path.join(base_path, 'cursor_register.py')
+            
+            # 使用subprocess启动注册程序
+            process = subprocess.Popen([sys.executable, register_script], 
+                                     creationflags=subprocess.CREATE_NEW_CONSOLE)
+            
+            self.log_message("启动注册程序成功")
             
         except Exception as e:
-            self.log_message(f"注册程序执行失败: {e}")
-            QMessageBox.critical(self, "错误", f"注册程序执行失败: {str(e)}")
+            self.log_message(f"启动注册程序失败: {e}")
+            QMessageBox.critical(self, "错误", f"启动注册程序失败: {str(e)}")
 
 if __name__ == "__main__":
     if sys.platform.startswith('win'):

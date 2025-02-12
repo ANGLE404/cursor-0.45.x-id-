@@ -1504,19 +1504,68 @@ class MainWindow(QMainWindow):
     def register_cursor(self):
         """注册Cursor"""
         try:
-            import cursor_register
-            success = cursor_register.main(translator)  # 获取返回值
+            import subprocess
+            import sys
+            import os
+            import traceback
+            import win32con
             
-            if success:
+            # 获取cursor_register.py的路径
+            if getattr(sys, 'frozen', False):
+                base_path = sys._MEIPASS
+                python_exe = sys.executable  # 使用当前exe的路径
+            else:
+                base_path = os.path.dirname(os.path.abspath(__file__))
+                python_exe = sys.executable
+            
+            register_script = os.path.join(base_path, 'cursor_register.py')
+            
+            # 确保文件存在
+            if not os.path.exists(register_script):
+                raise FileNotFoundError(f"找不到注册脚本: {register_script}")
+            
+            # 设置环境变量
+            env = os.environ.copy()
+            env['PYTHONPATH'] = base_path + os.pathsep + env.get('PYTHONPATH', '')
+            env['PYTHONIOENCODING'] = 'utf-8'
+            
+            # 创建命令行
+            cmd = [python_exe, register_script]
+            
+            # 打印调试信息
+            self.log_message(f"执行命令: {' '.join(cmd)}")
+            self.log_message(f"工作目录: {base_path}")
+            self.log_message(f"PYTHONPATH: {env['PYTHONPATH']}")
+            
+            # 启动进程
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
+            startupinfo.wShowWindow = win32con.SW_SHOW
+            
+            process = subprocess.Popen(
+                cmd,
+                env=env,
+                cwd=base_path,  # 设置工作目录
+                creationflags=subprocess.CREATE_NEW_CONSOLE,
+                startupinfo=startupinfo
+            )
+            
+            # 等待进程完成
+            process.wait()
+            
+            # 检查返回值
+            if process.returncode == 0:
                 self.log_message("注册程序执行成功")
-                QMessageBox.information(self, "成功", "Cursor注册成功！")
+                QMessageBox.information(self, "成功", "Cursor 注册成功！")
             else:
                 self.log_message("注册程序执行失败")
-                QMessageBox.warning(self, "警告", "Cursor注册失败，请查看日志了解详情。")
+                QMessageBox.critical(self, "错误", "Cursor 注册失败！")
             
         except Exception as e:
-            self.log_message(f"注册程序执行失败: {e}")
-            QMessageBox.critical(self, "错误", f"注册程序执行失败: {str(e)}")
+            error_msg = f"启动注册程序失败: {str(e)}\n\n"
+            error_msg += f"错误详情:\n{traceback.format_exc()}"
+            self.log_message(error_msg)
+            QMessageBox.critical(self, "错误", error_msg)
 
 if __name__ == "__main__":
     if sys.platform.startswith('win'):
