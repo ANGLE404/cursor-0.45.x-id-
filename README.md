@@ -245,6 +245,10 @@ graph TD
 
 This project provides a device identity reset solution for Cursor IDE 0.45.x series (verified on 0.45.8) on Windows systems. Built with PyQt6 GUI framework, it modifies both registry entries and configuration files to reset device fingerprints.
 
+# 赞赏码请我喝杯蜜雪
+
+![Collage_20250114_125849](https://github.com/user-attachments/assets/fbffa538-306b-4902-9a21-46b433c28e26)
+
 
 # SiliconCloud 裂变活动火热开启！2000 万 Tokens 等你来领！
 
