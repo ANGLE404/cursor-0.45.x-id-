@@ -4,7 +4,8 @@
 但是一定记得要填写验证码
 ![e53e1834074bef7cf8b4c486641ff437](https://github.com/user-attachments/assets/004c7bf9-8272-4122-a29a-fb66e2e19e9d)
 
-
+自动注册打磨的还是不够好
+后续想办法接入我自己的部署的虚拟邮箱
 ## 🙏 特别鸣谢 | Special Thanks
 
 本项目的开发过程中得到了众多开源项目和社区成员的支持与帮助,在此特别感谢:
