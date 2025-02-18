@@ -1,84 +1,182 @@
+import warnings
 import os
-import shutil
+import platform
+import subprocess
 import time
-import psutil
-import PyInstaller.__main__
+import threading
 
-def is_process_running(process_name):
-    """检查进程是否在运行"""
-    for proc in psutil.process_iter(['name']):
-        try:
-            if process_name.lower() in proc.info['name'].lower():
-                return True
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            pass
-    return False
+# 忽略特定的SyntaxWarning
+warnings.filterwarnings("ignore", category=SyntaxWarning, module="DrissionPage")
 
-def safe_remove_directory(path):
-    """安全地删除目录，如果失败则等待重试"""
-    if not os.path.exists(path):
-        return
-    
-    max_retries = 3
-    retry_delay = 2
-    
-    for attempt in range(max_retries):
-        try:
-            # 尝试删除目录
-            shutil.rmtree(path, ignore_errors=True)
-            break
-        except Exception as e:
-            if attempt < max_retries - 1:
-                print(f"删除{path}失败，等待{retry_delay}秒后重试...")
-                time.sleep(retry_delay)
-            else:
-                print(f"警告: 无法删除{path}目录: {e}")
-                print("继续构建过程...")
+CURSOR_LOGO = """
+   ██████╗██╗   ██╗██████╗ ███████╗ ██████╗ ██████╗ 
+  ██╔════╝██║   ██║██╔══██╗██╔════╝██╔═══██╗██╔══██╗
+  ██║     ██║   ██║██████╔╝███████╗██║   ██║██████╔╝
+  ██║     ██║   ██║██╔══██╗╚════██║██║   ██║██╔══██╗
+  ╚██████╗╚██████╔╝██║  ██║███████║╚██████╔╝██║  ██║
+   ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
+"""
+
+
+class LoadingAnimation:
+    def __init__(self):
+        self.is_running = False
+        self.animation_thread = None
+
+    def start(self, message="Building"):
+        self.is_running = True
+        self.animation_thread = threading.Thread(target=self._animate, args=(message,))
+        self.animation_thread.start()
+
+    def stop(self):
+        self.is_running = False
+        if self.animation_thread:
+            self.animation_thread.join()
+        print("\r" + " " * 70 + "\r", end="", flush=True)  # 清除行
+
+    def _animate(self, message):
+        animation = "|/-\\"
+        idx = 0
+        while self.is_running:
+            print(f"\r{message} {animation[idx % len(animation)]}", end="", flush=True)
+            idx += 1
+            time.sleep(0.1)
+
+
+def print_logo():
+    print("\033[96m" + CURSOR_LOGO + "\033[0m")
+    print("\033[93m" + "Building Cursor Keep Alive...".center(56) + "\033[0m\n")
+
+
+def progress_bar(progress, total, prefix="", length=50):
+    filled = int(length * progress // total)
+    bar = "█" * filled + "░" * (length - filled)
+    percent = f"{100 * progress / total:.1f}"
+    print(f"\r{prefix} |{bar}| {percent}% Complete", end="", flush=True)
+    if progress == total:
+        print()
+
+
+def simulate_progress(message, duration=1.0, steps=20):
+    print(f"\033[94m{message}\033[0m")
+    for i in range(steps + 1):
+        time.sleep(duration / steps)
+        progress_bar(i, steps, prefix="Progress:", length=40)
+
+
+def filter_output(output):
+    """重要信息过滤"""
+    if not output:
+        return ""
+    important_lines = []
+    for line in output.split("\n"):
+        # 只保留包含特定关键词的行
+        if any(
+            keyword in line.lower()
+            for keyword in ["error:", "failed:", "completed", "directory:"]
+        ):
+            important_lines.append(line)
+    return "\n".join(important_lines)
+
 
 def build():
-    # 检查是否有相关进程在运行
-    if is_process_running("Cursor Reset.exe"):
-        print("请先关闭Cursor Reset程序再进行构建")
+    # 清屏
+    os.system("cls" if platform.system().lower() == "windows" else "clear")
+
+    # 打印logo
+    print_logo()
+
+    system = platform.system().lower()
+    
+    # 修改spec文件路径,使用cursor_reset.spec
+    spec_file = "cursor_reset.spec"
+    
+    if not os.path.exists(spec_file):
+        print(f"\033[91m错误: 找不到spec文件 {spec_file}\033[0m")
         return
-    
-    # 安全清理之前的构建
-    print("清理旧的构建文件...")
-    safe_remove_directory('build')
-    safe_remove_directory('dist')
-    
-    # 图标路径
-    icon_path = r"C:\Users\QQB\CODE\cursor-reset-main\cursor-free-vip\Hacker_News_icon-icons.com_55898.ico"
-    
-    print("开始打包...")
+
+    output_dir = f"dist/{system if system != 'darwin' else 'mac'}"
+
+    # 创建输出目录
+    os.makedirs(output_dir, exist_ok=True)
+    simulate_progress("创建输出目录...", 0.5)
+
+    # 运行PyInstaller命令 - 移除不允许的选项
+    pyinstaller_command = [
+        "pyinstaller",
+        spec_file,
+        "--distpath", output_dir,
+        "--workpath", f"build/{system}",
+        "--noconfirm",
+        "--clean"
+    ]
+
+
+    loading = LoadingAnimation()
     try:
-        # 使用命令行参数直接打包
-        PyInstaller.__main__.run([
-            'cursor45 mail 美化.py',  # 主程序
-            '--name=Cursor Reset',  # 程序名称
-            '--windowed',  # 无控制台
-            '--clean',  # 清理临时文件
-            '--noconfirm',  # 不确认覆盖
-            f'--icon={icon_path}',  # 使用指定图标
-            '--uac-admin',  # 请求管理员权限
-            '--add-data=locales/*.json;locales',  # 添加语言文件
-            '--add-data=main.py;.',  # 添加主程序
-            '--add-data=cursor_register.py;.',  # 添加注册程序
-            '--add-data=reset_machine_manual.py;.',  # 添加重置程序
-            '--add-data=quit_cursor.py;.',  # 添加退出程序
-            '--add-data=logo.py;.',  # 添加logo文件
-            '--hidden-import=PyQt6',
-            '--hidden-import=win32security',
-            '--hidden-import=win32api',
-            '--hidden-import=win32con',
-            '--hidden-import=psutil',
-            '--hidden-import=colorama',
-            '--version-file=file_version_info.txt',  # 添加版本信息
-        ])
-        print("打包完成！")
-        
-    except Exception as e:
-        print(f"打包过程中出现错误: {e}")
+        simulate_progress("运行PyInstaller...", 2.0)
+        loading.start("正在打包...")
+        result = subprocess.run(
+            pyinstaller_command,
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        loading.stop()
+
+        if result.stderr:
+            filtered_errors = filter_output(result.stderr)
+            if filtered_errors:
+                print("\033[93m打包警告/错误:\033[0m")
+                print(filtered_errors)
+
+    except subprocess.CalledProcessError as e:
+        loading.stop()
+        print(f"\033[91m打包失败,错误码: {e.returncode}\033[0m")
+        if e.stderr:
+            print("\033[91m错误详情:\033[0m")
+            print(e.stderr)
         return
+    except FileNotFoundError:
+        loading.stop()
+        print(
+            "\033[91m错误: 请确保PyInstaller已安装 (pip install pyinstaller)\033[0m"
+        )
+        return
+    except KeyboardInterrupt:
+        loading.stop()
+        print("\n\033[91m打包已被用户取消\033[0m")
+        return
+    finally:
+        loading.stop()
+
+    # 复制配置文件
+    if os.path.exists("config.ini"):
+        simulate_progress("复制配置文件...", 0.5)
+        if system == "windows":
+            subprocess.run(
+                ["copy", "config.ini", f"{output_dir}\\config.ini"], shell=True
+            )
+        else:
+            subprocess.run(["cp", "config.ini", f"{output_dir}/config.ini"])
+
+    # 复制VIP激活脚本
+    if os.path.exists("cursor_pro_keep_alive.py"):
+        simulate_progress("复制VIP激活脚本...", 0.5)
+        if system == "windows":
+            subprocess.run(
+                ["copy", "cursor_pro_keep_alive.py", f"{output_dir}\\cursor_pro_keep_alive.py"], 
+                shell=True
+            )
+        else:
+            subprocess.run(
+                ["cp", "cursor_pro_keep_alive.py", f"{output_dir}/cursor_pro_keep_alive.py"]
+            )
+
+    print(
+        f"\n\033[92m打包完成! 输出目录: {output_dir}\033[0m"
+    )
+
 
 if __name__ == "__main__":
     build()

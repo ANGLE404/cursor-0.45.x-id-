@@ -1,0 +1,149 @@
+name: Build Executables
+
+on:
+  push:
+    tags:
+      - 'v*'  # 添加标签触发条件，匹配 v1.0.0 这样的标签
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install -r requirements.txt
+        
+    - name: Build EXE
+      run: |
+        pyinstaller CursorKeepAlive.spec
+        
+    - name: Upload Windows artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CursorPro-Windows
+        path: dist/CursorPro.exe
+
+  build-macos-arm64:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install -r requirements.txt
+        
+    - name: Build MacOS ARM executable
+      run: |
+        pyinstaller CursorKeepAlive.spec
+        
+    - name: Upload MacOS ARM artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CursorPro-MacOS-ARM64
+        path: dist/CursorPro
+
+  build-linux:
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install -r requirements.txt
+        
+    - name: Build Linux executable
+      run: |
+        pyinstaller CursorKeepAlive.spec
+        
+    - name: Upload Linux artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CursorPro-Linux
+        path: dist/CursorPro
+
+  build-macos-intel:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        arch -x86_64 pip3 install --upgrade pip
+        arch -x86_64 pip3 install pyinstaller
+        arch -x86_64 pip3 install -r requirements.txt
+
+    - name: Build MacOS Intel executable
+      env:
+        TARGET_ARCH: 'x86_64'
+      run: |
+        arch -x86_64 python3 -m PyInstaller CursorKeepAlive.spec
+        
+    - name: Upload MacOS Intel artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CursorPro-MacOS-Intel
+        path: dist/CursorPro
+
+  create-release:
+    needs: [build-windows, build-macos-arm64, build-linux, build-macos-intel]
+    runs-on: ubuntu-22.04
+    if: startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          
+      - name: Create release archives
+        run: |
+          cd artifacts
+          zip -r CursorPro-Windows.zip CursorPro-Windows/
+          zip -r CursorPro-MacOS-ARM64.zip CursorPro-MacOS-ARM64/
+          zip -r CursorPro-Linux.zip CursorPro-Linux/
+          zip -r CursorPro-MacOS-Intel.zip CursorPro-MacOS-Intel/
+
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/CursorPro-Windows.zip
+            artifacts/CursorPro-MacOS-ARM64.zip
+            artifacts/CursorPro-Linux.zip
+            artifacts/CursorPro-MacOS-Intel.zip
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
