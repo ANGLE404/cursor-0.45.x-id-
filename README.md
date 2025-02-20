@@ -1,8 +1,39 @@
-# 自动注册 可以设置接入自己的域名
+<div align="center">
 
-![PixPin_2025-02-18_17-12-34](https://github.com/user-attachments/assets/4952eeb1-6345-4bbc-813d-310f201efc07)
-只需要自己输入一个验证码
-全程自动
+# 🚀 Cursor 自动注册工具
+
+<p align="center">
+    <em>专业的Cursor IDE账号管理助手 - 支持自定义域名接入</em>
+</p>
+
+
+<p align="center">
+    <strong>🎯 一键操作 · 全程自动 · 简单易用</strong>
+</p>
+
+---
+
+<div align="center">
+    <h3>📞 联系方式</h3>
+    <table>
+        <tr>
+            <td align="center">📧 邮箱</td>
+            <td align="center">👥 QQ群</td>
+            <td align="center">💬 微信</td>
+            <td align="center">🔗 项目地址</td>
+        </tr>
+        <tr>
+            <td align="center"><code>anjiaqi404@qq.com</code></td>
+            <td align="center"><code>994997809</code></td>
+            <td align="center"><code>lntunndz</code></td>
+            <td align="center"><a href="https://github.com/ANGLE404/cursor-0.45.x-id-">GitHub</a></td>
+        </tr>
+    </table>
+</div>
+
+---
+
+</div>
 
 ## 🙏 特别鸣谢 | Special Thanks
 
@@ -14,6 +45,7 @@
 - [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) - 优秀的GUI框架支持
 - [psutil](https://github.com/giampaolo/psutil) - 提供了可靠的进程管理功能
 - [cursor-free-vip](https://github.com/yeongpin/cursor-free-vip/tree/main)- 提供自动注册
+- [chengazhen/cursor-auto-free](https://github.com/chengazhen/cursor-auto-free) - 提供了自动注册功能的实现参考
 
 ### 技术支持
 
@@ -57,13 +89,6 @@
 
 ---
 
-
-
-### 无广告代码已经更新
-
-![无广告代码更新](https://github.com/user-attachments/assets/17745383-c21d-4bbd-9755-8d9bdae0104a)
-
----
 
 ## 🛠️ 技术特性 | Technical Features
 
@@ -140,7 +165,14 @@ graph TD
 
 遇到技术问题请提交 issue，或通过以下方式联系我们：
 
--   电子邮箱：anjiaqi404@qq.com
+### 📞 联系方式
+-   📧 电子邮箱：`anjiaqi404@qq.com`
+-   👥 用户交流QQ群：`994997809`
+-   🔗 开源地址：`https://github.com/ANGLE404/cursor-0.45.x-id-`
+
+---
+
+> 💡 **温馨提示**：加入QQ群可获取最新版本提醒和独家使用技巧
 
 ---
 
@@ -168,7 +200,46 @@ graph TD
 -   **ID 备份**：备份当前的设备 ID，以便在需要时恢复。
 -   **强制关闭**：提供强制关闭 Cursor IDE 的功能，避免重置过程中出现问题。
 -   **日志记录**：详细记录重置过程中的操作，方便用户查看。
+-   **自动注册**：支持全自动注册Cursor账号，可配置自定义域名。
 -   **彩蛋功能**：有趣的彩蛋，可通过点击标题栏触发。
+
+### 🚀 自动注册功能使用说明
+
+#### 1. 环境配置
+
+1. 复制 `.env.example` 文件并重命名为 `.env`
+2. 在 `.env` 文件中配置以下信息：
+```env
+# 你的CF路由填写的域名
+DOMAIN=xxxxx.me
+# 邮件服务地址(注册临时邮件服务 https://tempmail.plus)
+TEMP_MAIL=xxxxxx
+# 设置的PIN码
+TEMP_MAIL_EPIN=xxxxxx
+# 使用的后缀
+TEMP_MAIL_EXT=@mailto.plus
+# 可选配置
+BROWSER_USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) ...
+# 代理设置(可选)
+# BROWSER_PROXY='http://127.0.0.1:2080'
+# 无头模式(默认开启)
+# BROWSER_HEADLESS='True'
+```
+
+#### 2. 运行自动注册
+![PixPin_2025-02-18_17-12-34](https://github.com/user-attachments/assets/4952eeb1-6345-4bbc-813d-310f201efc07)
+1. 确保已正确配置 `.env` 文件
+2. 运行 `cursor pro.exe` 脚本
+3. 程序会自动完成注册流程并保存账号信息
+
+> 📺 **视频教程**：[Cursor自动注册教程](https://www.bilibili.com/video/BV1WTKge6E7u/)
+
+#### 3. 注意事项
+
+- 确保网络环境稳定
+- 建议使用代理以提高成功率
+- 注册完成后请妥善保存账号信息
+- 遇到问题可加入QQ交流群获取支持
 
 ###  🛠️ 使用方法
 
@@ -177,7 +248,7 @@ graph TD
 -   在 Cursor IDE 中退出当前登录的账号。
 -   完全关闭 Cursor IDE。
 -   以管理员身份运行本工具。
--   点击“开始重置”按钮，按照提示操作。
+-   点击"开始重置"按钮，按照提示操作。
 -   重置完成后，打开 Cursor IDE 并使用新账号登录（**不要使用之前的账号**）。
 
 #### 2. macOS 系统
@@ -241,28 +312,3 @@ This project provides a device identity reset solution for Cursor IDE 0.45.x ser
 
 ![Collage_20250114_125849](https://github.com/user-attachments/assets/fbffa538-306b-4902-9a21-46b433c28e26)
 
-
-# SiliconCloud 裂变活动火热开启！2000 万 Tokens 等你来领！
-
-大家好！今天我们为大家带来一个超值的活动——**SiliconCloud 裂变活动**，2000 万 Tokens 等你来领！
-
-## 活动详情
-
-**北京时间 2024 年 8 月 1 日起**，每成功邀请一位新用户注册 SiliconCloud，您和好友均可获得 **2000 万 Tokens**（价值 14 元平台配额）。邀请越多，奖励越多，快来体验 SiliconCloud 的强大功能！
-
-### 活动规则
-
-1.  **邀请好友赚 Tokens**：每成功邀请一位新用户，您将获得 2000 万 Tokens。
-2.  **注册即送 Tokens**：受邀好友完成注册后，立即获得 2000 万 Tokens。
-3.  **14 元配额**：新用户还可获得 14 元平台配额，体验流畅的 DeepSeek API，告别卡顿网络版本！
-
-## 立即注册
-
-**点击下方链接，注册 SiliconCloud**
-
-或复制链接到浏览器注册：[https://cloud.siliconflow.cn/i/CoW8MS0u](https://cloud.siliconflow.cn/i/CoW8MS0u)
-
-**快来参与裂变活动，邀请好友一起体验 SiliconCloud 的强大功能吧！**
-
-# 帮我助力一下谢谢各位
-# Help me, thank you everyone
